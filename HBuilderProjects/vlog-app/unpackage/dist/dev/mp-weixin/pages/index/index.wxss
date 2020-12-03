@@ -1,0 +1,23 @@
+
+.container.data-v-57280228 {
+	width: 750rpx;
+	padding: 10rpx 10rpx;
+}
+.cards.data-v-57280228{
+	height: 750rpx;
+	background-color: rgb(153,158,207);
+	padding: 20rpx;
+	-webkit-border-radius: 10rpx;
+	        border-radius: 10rpx;
+	margin-bottom: 20rpx;
+}
+.title.data-v-57280228 {
+	font-size: 36rpx;
+}
+.cover.data-v-57280228{
+	width: 700rpx;
+	height: 550rpx;
+	-webkit-border-radius: 10rpx;
+	        border-radius: 10rpx;
+}
+
