@@ -24,13 +24,9 @@ import java.util.List;
 public class CardController {
 
     @GetMapping("cards")
-    public ResponseResult getCards() {
+    public ResponseResult getCard() {
         List<Card> cards = DataUtil.initCards();
         ResultCode success = ResultCode.SUCCESS;
-        return ResponseResult.builder()
-                .code(success.code())
-                .msg(success.message())
-                .data(cards)
-                .build();
+        return ResponseResult.success(cards);
     }
 }

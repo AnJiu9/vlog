@@ -143,6 +143,7 @@ __definePage('pages/news/news', function () {return Vue.extend(__webpack_require
 __definePage('pages/msg/msg', function () {return Vue.extend(__webpack_require__(/*! pages/msg/msg.vue?mpType=page */ 19).default);});
 __definePage('pages/my/my', function () {return Vue.extend(__webpack_require__(/*! pages/my/my.vue?mpType=page */ 24).default);});
 __definePage('pages/login/login', function () {return Vue.extend(__webpack_require__(/*! pages/login/login.vue?mpType=page */ 53).default);});
+__definePage('pages/login/login', function () {return Vue.extend(__webpack_require__(/*! pages/login/login.vue?mpType=page */ 53).default);});
 
 /***/ }),
 /* 2 */
@@ -1237,7 +1238,7 @@ var render = function() {
           _c("v-uni-image", {
             staticClass: _vm._$g(2, "sc"),
             staticStyle: { width: "100rpx", height: "100rpx" },
-            attrs: { src: "/static/1.jpg", _i: 2 }
+            attrs: { src: _vm._$g(2, "a-src"), _i: 2 }
           }),
           _c(
             "v-uni-view",
@@ -1246,11 +1247,13 @@ var render = function() {
               _c(
                 "v-uni-text",
                 { staticClass: _vm._$g(4, "sc"), attrs: { _i: 4 } },
-                [_vm._v("Orange")]
+                [_vm._v(_vm._$g(4, "t0-0"))]
               ),
-              _c("v-uni-text", { attrs: { _i: 5 } }, [
-                _vm._v("总帖子10 今日发帖0")
-              ])
+              _c(
+                "v-uni-text",
+                { staticClass: _vm._$g(5, "sc"), attrs: { _i: 5 } },
+                [_vm._v("总帖子10 今日发帖0")]
+              )
             ],
             1
           ),
@@ -2173,79 +2176,181 @@ var render = function() {
           },
           attrs: { _i: 4 }
         },
-        [_vm._v("账号密码登录")]
+        [_vm._v(_vm._$g(4, "t0-0"))]
       ),
       _c(
         "v-uni-view",
         { staticClass: _vm._$g(5, "sc"), attrs: { _i: 5 } },
         [
-          _c(
-            "v-uni-view",
-            { staticClass: _vm._$g(6, "sc"), attrs: { _i: 6 } },
-            [
-              _c("v-uni-input", {
-                staticClass: _vm._$g(7, "sc"),
-                attrs: { type: "text", placeholder: "昵称/手机号/邮箱", _i: 7 }
-              })
-            ],
-            1
-          ),
-          _c(
-            "v-uni-view",
-            { staticClass: _vm._$g(8, "sc"), attrs: { _i: 8 } },
-            [
-              _c("v-uni-input", {
-                staticClass: _vm._$g(9, "sc"),
-                attrs: { type: "text", placeholder: "请输入密码", _i: 9 }
-              }),
-              _c(
-                "v-uni-view",
-                {
-                  staticClass: _vm._$g(10, "sc"),
-                  staticStyle: { width: "150rpx" },
-                  attrs: { _i: 10 }
-                },
-                [_vm._v("忘记密码？")]
-              )
-            ],
-            1
-          )
+          _vm._$g(6, "i")
+            ? [
+                _c(
+                  "v-uni-view",
+                  { staticClass: _vm._$g(7, "sc"), attrs: { _i: 7 } },
+                  [
+                    _c("v-uni-input", {
+                      staticClass: _vm._$g(8, "sc"),
+                      attrs: { type: "text", placeholder: "手机号", _i: 8 },
+                      model: {
+                        value: _vm._$g(8, "v-model"),
+                        callback: function($$v) {
+                          _vm.$handleVModelEvent(8, $$v)
+                        },
+                        expression: "phone"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _c(
+                  "v-uni-view",
+                  { staticClass: _vm._$g(9, "sc"), attrs: { _i: 9 } },
+                  [
+                    _c("v-uni-input", {
+                      staticClass: _vm._$g(10, "sc"),
+                      attrs: {
+                        type: "text",
+                        placeholder: "请输入密码",
+                        _i: 10
+                      },
+                      model: {
+                        value: _vm._$g(10, "v-model"),
+                        callback: function($$v) {
+                          _vm.$handleVModelEvent(10, $$v)
+                        },
+                        expression: "password"
+                      }
+                    }),
+                    _c(
+                      "v-uni-view",
+                      {
+                        staticClass: _vm._$g(11, "sc"),
+                        staticStyle: { width: "150rpx" },
+                        attrs: { _i: 11 }
+                      },
+                      [_vm._v("忘记密码？")]
+                    )
+                  ],
+                  1
+                )
+              ]
+            : [
+                _c(
+                  "v-uni-view",
+                  { staticClass: _vm._$g(13, "sc"), attrs: { _i: 13 } },
+                  [
+                    _c(
+                      "v-uni-view",
+                      { staticClass: _vm._$g(14, "sc"), attrs: { _i: 14 } },
+                      [_vm._v("+86")]
+                    ),
+                    _c("v-uni-input", {
+                      staticClass: _vm._$g(15, "sc"),
+                      attrs: { type: "text", placeholder: "手机号", _i: 15 },
+                      model: {
+                        value: _vm._$g(15, "v-model"),
+                        callback: function($$v) {
+                          _vm.$handleVModelEvent(15, $$v)
+                        },
+                        expression: "phone"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _c(
+                  "v-uni-view",
+                  { staticClass: _vm._$g(16, "sc"), attrs: { _i: 16 } },
+                  [
+                    _c("v-uni-input", {
+                      staticClass: _vm._$g(17, "sc"),
+                      attrs: {
+                        type: "text",
+                        placeholder: "请输入验证码",
+                        _i: 17
+                      },
+                      model: {
+                        value: _vm._$g(17, "v-model"),
+                        callback: function($$v) {
+                          _vm.$handleVModelEvent(17, $$v)
+                        },
+                        expression: "code"
+                      }
+                    }),
+                    _c(
+                      "v-uni-view",
+                      {
+                        staticClass: _vm._$g(18, "sc"),
+                        class: _vm._$g(18, "c"),
+                        staticStyle: { width: "180rpx" },
+                        attrs: { _i: 18 },
+                        on: {
+                          click: function($event) {
+                            return _vm.$handleViewEvent($event)
+                          }
+                        }
+                      },
+                      [_vm._v(_vm._$g(18, "t0-0"))]
+                    )
+                  ],
+                  1
+                )
+              ]
         ],
-        1
+        2
       ),
       _c(
         "v-uni-view",
-        { staticClass: _vm._$g(11, "sc"), attrs: { _i: 11 } },
+        { staticClass: _vm._$g(19, "sc"), attrs: { _i: 19 } },
         [
           _c(
             "v-uni-button",
             {
-              staticClass: _vm._$g(12, "sc"),
+              staticClass: _vm._$g(20, "sc"),
+              class: _vm._$g(20, "c"),
               staticStyle: { "border-radius": "50rpx", border: "0" },
-              attrs: { type: "primary", _i: 12 }
+              attrs: {
+                type: "primary",
+                disabled: _vm._$g(20, "a-disabled"),
+                loading: _vm._$g(20, "a-loading"),
+                _i: 20
+              },
+              on: {
+                click: function($event) {
+                  return _vm.$handleViewEvent($event)
+                }
+              }
             },
-            [_vm._v("登录")]
+            [_vm._v(_vm._$g(20, "t0-0"))]
           )
         ],
         1
       ),
       _c(
         "v-uni-view",
-        { staticClass: _vm._$g(13, "sc"), attrs: { _i: 13 } },
+        { staticClass: _vm._$g(21, "sc"), attrs: { _i: 21 } },
         [
           _c(
             "v-uni-view",
-            { staticClass: _vm._$g(14, "sc"), attrs: { _i: 14 } },
-            [_vm._v("验证码登录")]
+            {
+              staticClass: _vm._$g(22, "sc"),
+              attrs: { _i: 22 },
+              on: {
+                click: function($event) {
+                  return _vm.$handleViewEvent($event)
+                }
+              }
+            },
+            [_vm._v(_vm._$g(22, "t0-0"))]
           ),
           _c(
             "v-uni-text",
-            { staticClass: _vm._$g(15, "sc"), attrs: { _i: 15 } },
+            { staticClass: _vm._$g(23, "sc"), attrs: { _i: 23 } },
             [_vm._v("|")]
           ),
           _c(
             "v-uni-view",
-            { staticClass: _vm._$g(16, "sc"), attrs: { _i: 16 } },
+            { staticClass: _vm._$g(24, "sc"), attrs: { _i: 24 } },
             [_vm._v("登录遇到问题")]
           )
         ],
@@ -2253,29 +2358,14 @@ var render = function() {
       ),
       _c(
         "v-uni-view",
-        { staticClass: _vm._$g(17, "sc"), attrs: { _i: 17 } },
+        { staticClass: _vm._$g(25, "sc"), attrs: { _i: 25 } },
         [
-          _c("v-uni-view", {
-            staticStyle: {
-              height: "1rpx",
-              "background-color": "#dddddd",
-              width: "100rpx"
-            },
-            attrs: { _i: 18 }
-          }),
+          _vm._v("注册即代表同意"),
           _c(
-            "v-uni-view",
-            { staticClass: _vm._$g(19, "sc"), attrs: { _i: 19 } },
-            [_vm._v("社交账号登录")]
-          ),
-          _c("v-uni-view", {
-            staticStyle: {
-              height: "1rpx",
-              "background-color": "#dddddd",
-              width: "100rpx"
-            },
-            attrs: { _i: 20 }
-          })
+            "v-uni-text",
+            { staticClass: _vm._$g(26, "sc"), attrs: { _i: 26 } },
+            [_vm._v("《xxx协议》")]
+          )
         ],
         1
       )
