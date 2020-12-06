@@ -22,8 +22,7 @@ public interface UserMapper {
      * @param user 入参user对象
      * @throws SQLException 异常
      */
-    @Insert("INSERT INTO t_user (phone,password,nickname,avatar,gender,birthday,address,create_time)" +
-            "VALUES (#{phone},#{password},#{nickname},#{avatar},#{gender},#{birthday},#{address},#{createTime})")
+    @Insert("INSERT INTO t_user (phone,nickname,avatar,create_time) VALUES (#{phone},#{nickname},#{avatar},#{createTime})")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void insert(User user) throws SQLException;
 

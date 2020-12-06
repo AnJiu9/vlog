@@ -3,11 +3,11 @@ package com.j.vlog.controller;
 import com.j.vlog.common.ResponseResult;
 import com.j.vlog.common.ResultCode;
 import com.j.vlog.model.dto.LoginDto;
+import com.j.vlog.model.dto.PhoneLoginDto;
 import com.j.vlog.service.RedisService;
 import com.j.vlog.service.UserService;
 import com.j.vlog.utils.SmsUtil;
 import com.j.vlog.utils.StringUtil;
-import org.apache.commons.lang3.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
@@ -52,11 +52,22 @@ public class UserController {
         boolean flag = smsUtil.sendSms(phone, code);
         if (flag){
             //验证码存入redis，5分钟有效
-            redisService.set(phone, code, 5L);
+            redisService.set(phone, code, 1L);
             return ResponseResult.success(code);
         }else {
-            redisService.set(phone, code, 5L);
+            redisService.set(phone, code, 1L);
             return ResponseResult.failure(ResultCode.SMS_ERROR);
+        }
+    }
+
+    @PostMapping(value = "/phonelogin")
+    public ResponseResult login(@RequestBody PhoneLoginDto phoneLoginDto) {
+        log.info("phoneLoginDto:" + phoneLoginDto);
+        boolean flag = userService.phoneLogin(phoneLoginDto);
+        if (flag) {
+            return ResponseResult.success(userService.getUser(phoneLoginDto.getPhone()));
+        } else {
+            return ResponseResult.failure(ResultCode.USER_VERIFY_CODE_ERROR);
         }
     }
 }
