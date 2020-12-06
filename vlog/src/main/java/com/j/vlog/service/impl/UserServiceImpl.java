@@ -48,6 +48,27 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User updateUser(User user) {
+        //先查出数据库原用户信息
+        User savedUser = getUser(user.getPhone());
+        //相应字段值的修改，如果没有修改也需要传原值，以免被覆盖为空
+        savedUser.setPassword(DigestUtils.md5Hex(user.getPassword()));
+        savedUser.setNickname(user.getNickname());
+        savedUser.setAvatar(user.getAvatar());
+        savedUser.setGender(user.getGender());
+        savedUser.setBirthday(user.getBirthday());
+        savedUser.setAddress(user.getAddress());
+        //更新数据
+        try {
+            userMapper.updateUser(savedUser);
+        } catch (SQLException throwables) {
+            System.err.println("修改用户信息出现异常");
+        }
+        //将修改后的用户信息返回
+        return savedUser;
+    }
+
+    @Override
     public boolean phoneLogin(PhoneLoginDto phoneLoginDto) {
         //无论是否存在该手机号，均先交验验证码，通过再分两种情况处理为登录和注册
         //检查redis中是否存在该手机号的记录

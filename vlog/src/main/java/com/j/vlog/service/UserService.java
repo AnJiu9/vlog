@@ -30,6 +30,14 @@ public interface UserService {
      */
     User getUser(String phone);
 
+    /**
+     * 修改用户信息
+     *
+     * @param user
+     * @return
+     */
+    User updateUser(User user);
+
 
     /**
      * 手机短信验证码登录

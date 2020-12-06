@@ -117,12 +117,11 @@
 				if(!this.validate()) return;
 				//请求数据
 				this.$H
-					.post('./user/sendcode',
+					.post('./user/sendcode?phone=' + this.phone,
 					{
-						phone:this.phone
-					},{
 						native:true
-					}).then(res=>{
+					})
+					.then(res=>{
 						uni.showToast({
 							title:res.data.msg,
 							icon:'none'

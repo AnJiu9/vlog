@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.stereotype.Component;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import javax.annotation.Resource;
 
@@ -41,5 +42,17 @@ class UserMapperTest {
     void findUserByPhone() throws Exception{
         User user = userMapper.findUserByPhone("18805150273");
         log.info(String.valueOf(user));
+    }
+
+    @Test
+    void updateUser() throws Exception{
+        User user = userMapper.findUserByPhone("18805150273");
+        user.setPassword(DigestUtils.md5Hex("123123"));
+        user.setNickname("Orange");
+        user.setAvatar("https://share--app.oss-cn-hangzhou.aliyuncs.com/avatar/20201205181922.jpg");
+        user.setGender(Gender.female.type);
+        user.setBirthday(LocalDate.of(1999,10,15));
+        user.setAddress("江苏省苏州市姑苏区");
+        userMapper.updateUser(user);
     }
 }
