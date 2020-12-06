@@ -21,7 +21,7 @@ class UserServiceTest {
     @Test
     void login() {
         LoginDto loginDto = LoginDto.builder()
-                .phone("18800000212")
+                .phone("18805150273")
                 .password("123123")
                 .build();
         boolean flag = userService.login(loginDto);
@@ -31,7 +31,7 @@ class UserServiceTest {
 
     @Test
     void getUser() {
-        User user = userService.getUser("18800000212");
+        User user = userService.getUser("18805150273");
         log.info(String.valueOf(user));
     }
 }

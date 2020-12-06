@@ -25,9 +25,9 @@ class UserMapperTest {
     @Test
     void insert() throws Exception{
         User user = User.builder()
-                .phone("18800000212")
+                .phone("18796428166")
                 .password("123123")
-                .nickname("Orange")
+                .nickname("Test")
                 .avatar("1.jpg")
                 .gender(Gender.female.type)
                 .birthday(LocalDate.now())
@@ -39,7 +39,7 @@ class UserMapperTest {
 
     @Test
     void findUserByPhone() throws Exception{
-        User user = userMapper.findUserByPhone("18800000212");
+        User user = userMapper.findUserByPhone("18805150273");
         log.info(String.valueOf(user));
     }
 }
