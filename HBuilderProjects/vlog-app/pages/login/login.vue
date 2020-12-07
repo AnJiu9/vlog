@@ -117,15 +117,9 @@
 				if(!this.validate()) return;
 				//请求数据
 				this.$H
-					.post('./user/sendcode?phone=' + this.phone,
-					{
+					.post('/user/sendcode?phone='+this.phone,{
 						native:true
-					})
-					.then(res=>{
-						uni.showToast({
-							title:res.data.msg,
-							icon:'none'
-						});
+					}).then(res=>{
 						//倒计时
 						this.codeTime = 60;
 						let timer = setInterval(()=>{
@@ -174,7 +168,6 @@
 					};
 				}
 				this.loading = true;
-				// console.log("1");
 				this.$H
 					.post(url,data)
 					.then(res =>{
@@ -187,7 +180,6 @@
 							title:'登录成功',
 							content:'去看看',
 							success:function(res){
-								// console.log(res.confirm);
 								if(res.confirm){
 									uni.switchTab({
 										url:'../my/my'

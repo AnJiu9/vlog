@@ -1,18 +1,26 @@
 package com.j.vlog.service.impl;
 
+import com.aliyun.oss.OSS;
+import com.aliyun.oss.OSSClientBuilder;
 import com.j.vlog.mapper.UserMapper;
 import com.j.vlog.model.dto.LoginDto;
 import com.j.vlog.model.dto.PhoneLoginDto;
 import com.j.vlog.model.entity.User;
 import com.j.vlog.service.RedisService;
 import com.j.vlog.service.UserService;
+import com.j.vlog.utils.AliyunResource;
+import com.j.vlog.utils.FileResource;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.xml.ws.ServiceMode;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
  * @ClassName UserServiceImpl
@@ -26,6 +34,10 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
     @Resource
     private RedisService redisService;
+    @Resource
+    private AliyunResource aliyunResource;
+    @Resource
+    private FileResource fileResource;
 
     @Override
     public boolean login(LoginDto loginDto) {
@@ -101,5 +113,34 @@ public class UserServiceImpl implements UserService {
             }
         }
         return false;
+    }
+
+    @Override
+    public String uploadFile(MultipartFile file) {
+        //读入配置文件信息
+        String endpoint = fileResource.getEndpoint();
+        String accessKeyId = aliyunResource.getAccessKeyId();
+        String accessKeySecret = aliyunResource.getAccessKeySecret();
+        //创建OSSClient实例
+        OSS ossClient = new OSSClientBuilder().build(endpoint,accessKeyId,accessKeySecret);
+        String fileName = file.getOriginalFilename();
+        //分割文件名，获得文件后缀名
+        assert fileName != null;
+        String[] fileNameArr = fileName.split("\\.");
+        String suffix = fileNameArr[fileNameArr.length -1];
+        //拼接得到新的上传文件名
+        String uploadFileName = fileResource.getObjectName() + UUID.randomUUID().toString() + "." + suffix;
+        //上传网络需要用的字节流
+        InputStream inputStream = null;
+        try {
+            inputStream = file.getInputStream();
+        } catch (IOException e) {
+            System.err.println("上传文件出现异常");
+        }
+        //执行阿里云上传文件操作
+        ossClient.putObject(fileResource.getBucketName(), uploadFileName, inputStream);
+        //关闭OSSClient
+        ossClient.shutdown();
+        return uploadFileName;
     }
 }

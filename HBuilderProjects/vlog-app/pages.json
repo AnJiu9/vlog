@@ -102,8 +102,7 @@
             "path" : "pages/about/about",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
+                "navigationBarTitleText": "关于社区"
             }
             
         }
@@ -111,8 +110,7 @@
             "path" : "pages/user-feedback/user-feedback",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
+                "navigationBarTitleText": "意见反馈"
             }
             
         }
@@ -129,8 +127,15 @@
             "path" : "pages/user-safe/user-safe",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
+                "navigationBarTitleText": "账号安全"
+            }
+            
+        }
+        ,{
+            "path" : "pages/update-pwd/update-pwd",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "修改密码"
             }
             
         }

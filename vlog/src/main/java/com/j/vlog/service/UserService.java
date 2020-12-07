@@ -3,6 +3,8 @@ package com.j.vlog.service;
 import com.j.vlog.model.dto.LoginDto;
 import com.j.vlog.model.dto.PhoneLoginDto;
 import com.j.vlog.model.entity.User;
+import org.omg.CORBA.StringHolder;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * @ClassName UserService
@@ -46,4 +48,12 @@ public interface UserService {
      * @return boolean
      */
     boolean phoneLogin(PhoneLoginDto phoneLoginDto);
+
+    /**
+     * 上传文件到OSS
+     *
+     * @param file 文件对象
+     * @return 上传后的url
+     */
+    String uploadFile(MultipartFile file);
 }

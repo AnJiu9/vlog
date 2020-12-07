@@ -27,6 +27,8 @@ Vue.prototype.$H = $H
 
 App.mpType = 'app'
 
+// Vue.use(VueAxios,axios)
+
 const app = new Vue({
 	store,
 	...App
