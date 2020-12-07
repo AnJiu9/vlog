@@ -4538,7 +4538,7 @@ var render = function() {
           callback: function($$v) {
             _vm.$handleVModelEvent(2, $$v)
           },
-          expression: "confirmpassword"
+          expression: "renewpassword"
         }
       }),
       _c(
@@ -4549,13 +4549,23 @@ var render = function() {
             "v-uni-button",
             {
               staticClass: _vm._$g(4, "sc"),
+              class: _vm._$g(4, "c"),
               staticStyle: {
                 "border-radius": "50rpx",
                 border: "0",
                 width: "500rpx",
                 "margin-top": "15rpx"
               },
-              attrs: { type: "primary", _i: 4 }
+              attrs: {
+                type: "primary",
+                disabled: _vm._$g(4, "a-disabled"),
+                _i: 4
+              },
+              on: {
+                click: function($event) {
+                  return _vm.$handleViewEvent($event)
+                }
+              }
             },
             [_vm._v("设置")]
           )
