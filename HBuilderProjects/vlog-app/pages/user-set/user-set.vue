@@ -54,7 +54,7 @@
 			},
 			//封装根据path跳转页面的方法
 			open(path){
-				console.log(`../${path}/${path}`);
+				// console.log(`../${path}/${path}`);
 				uni.navigateTo({
 					url:`../${path}/${path}`
 				});

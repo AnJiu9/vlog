@@ -118,8 +118,7 @@
             "path" : "pages/user-info/user-info",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
+                "navigationBarTitleText": "编辑资料"
             }
             
         }

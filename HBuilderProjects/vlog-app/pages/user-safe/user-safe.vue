@@ -13,14 +13,13 @@
 		components:{
 			uniListItem
 		},
-		//封装根据path跳转页面的方法
-		
 		data() {
 			return {
 				
 			}
 		},
 		methods: {
+			//封装根据path跳转页面的方法
 			open(path){
 				console.log(`../${path}/${path}`);
 				uni.navigateTo({
