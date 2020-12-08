@@ -3,7 +3,7 @@
 		<uni-list-item title="头像" @click="changeAvatar">
 			<view class="flex align-center" slot="right">
 				<image
-					:src="avatar ? avatar : '/static/default.jpg'"
+					:src="user.avatar ? user.avatar : '/static/default.jpg'"
 					style="width: 100rpx; height: 100rpx;"
 					class="rounded-circle"
 				></image>
@@ -68,7 +68,6 @@
 			return {
 				themeColor: '#007AFF',
 				cityPickerValueDefault: [0, 0, 1],
-				avatar: 'https://share--app.oss-cn-hangzhou.aliyuncs.com/avatar/20201205181922.jpg',
 				pickerText: '',
 				nickname: '',
 				gender: 0,
@@ -127,19 +126,33 @@
 					sourceType: ['album', 'camera'],
 					success: res => {
 						//本地文件地址
-						console.log(res.tempFilePaths[0]);
+						// console.log(res.tempFilePaths[0]);
 						this.$H
 							.upload('/user/upload',{
 								filePath: res.tempFilePaths[0],
 								name: 'file' //一定要和后端接口的入参名字一样
 							})
 							.then(result =>{
-								console.log(result.data);
-								uni.showToast({
-									title:'修改头像成功',
-									icon:'none'
+								// console.log(result.data);
+								let data = {
+									id: this.user.id,
+									phone: this.user.phone,
+									password: this.user.password,
+									nickname: this.user.nickname,
+									avatar: result.data,
+									gender: this.user.gender,
+									birthday: this.user.birthday,
+									address: this.user.address,
+									createTime: this.user.createTime
+								};
+								this.@H.post('/user/update', data).then(res => {
+									console.log(res);
+									this.$store.commit('editUserInfo', data);
+									uni.showToast({
+										title:'修改头像成功',
+										icon:'none'
+									});
 								});
-								this.avatar = result.data;
 							})
 							.catch(err => {
 								console.log(err);
