@@ -2438,6 +2438,57 @@ var render = function() {
           )
         ],
         1
+      ),
+      _c(
+        "v-uni-view",
+        { staticClass: _vm._$g(27, "sc"), attrs: { _i: 27 } },
+        [
+          _c(
+            "v-uni-view",
+            {
+              staticClass: _vm._$g(28, "sc"),
+              attrs: { _i: 28 },
+              on: {
+                click: function($event) {
+                  return _vm.$handleViewEvent($event)
+                }
+              }
+            },
+            [
+              _c("v-uni-view", {
+                staticClass: _vm._$g(29, "sc"),
+                staticStyle: { width: "100rpx", height: "100rpx" },
+                attrs: { _i: 29 }
+              })
+            ],
+            1
+          ),
+          _c(
+            "v-uni-view",
+            { staticClass: _vm._$g(30, "sc"), attrs: { _i: 30 } },
+            [
+              _c("v-uni-view", {
+                staticClass: _vm._$g(31, "sc"),
+                staticStyle: { width: "100rpx", height: "100rpx" },
+                attrs: { _i: 31 }
+              })
+            ],
+            1
+          ),
+          _c(
+            "v-uni-view",
+            { staticClass: _vm._$g(32, "sc"), attrs: { _i: 32 } },
+            [
+              _c("v-uni-view", {
+                staticClass: _vm._$g(33, "sc"),
+                staticStyle: { width: "100rpx", height: "100rpx" },
+                attrs: { _i: 33 }
+              })
+            ],
+            1
+          )
+        ],
+        1
       )
     ],
     1

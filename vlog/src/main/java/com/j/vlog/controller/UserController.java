@@ -4,12 +4,14 @@ import com.j.vlog.common.ResponseResult;
 import com.j.vlog.common.ResultCode;
 import com.j.vlog.model.dto.LoginDto;
 import com.j.vlog.model.dto.PhoneLoginDto;
+import com.j.vlog.model.dto.WxLoginDto;
 import com.j.vlog.model.entity.User;
 import com.j.vlog.service.RedisService;
 import com.j.vlog.service.UserService;
 import com.j.vlog.utils.FileResource;
 import com.j.vlog.utils.SmsUtil;
 import com.j.vlog.utils.StringUtil;
+import com.sun.source.tree.ReturnTree;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -103,5 +105,15 @@ public class UserController {
             path = fileResource.getOssHost() + path;
         }
         return ResponseResult.success(path);
+    }
+
+    @PostMapping(value = "/wxLogin")
+    public ResponseResult wxLogin(@RequestBody WxLoginDto wxLoginDto) {
+        log.info("wxLoginDto:" + wxLoginDto);
+        User user = userService.wxLogin(wxLoginDto);
+        if (user != null) {
+            return ResponseResult.success(user);
+        }
+        return ResponseResult.failure(ResultCode.USER_SIGN_IN_FAIL);
     }
 }
