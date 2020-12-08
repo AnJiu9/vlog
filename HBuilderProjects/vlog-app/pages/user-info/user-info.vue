@@ -177,7 +177,27 @@
 				});
 			},
 			//提交
-			submit(){}
+			submit(){
+				let data = {
+					id: this.user.id,
+					phone: this.user.phone,
+					password: this.user.password,
+					nickname: this.nickname,
+					avatar: this.user.avatar,
+					gender: this.gender,
+					birthday: this.birthday,
+					address: this.pickerText,
+					createTime: this.user.createTime
+				};
+				this.$H.post('/user/update', data).then(res => {
+					console.log(res);
+					this.$store.commit('editUserInfo', data);
+					uni.showToast({
+						title:'修改资料成功',
+						icon:'none'
+					});
+				});
+			}
 		}
 	};
 </script>
