@@ -3927,7 +3927,12 @@ var render = function() {
             {
               staticClass: _vm._$g(23, "sc"),
               staticStyle: { "border-radius": "50rpx", border: "0" },
-              attrs: { type: "primary", _i: 23 }
+              attrs: { type: "primary", _i: 23 },
+              on: {
+                click: function($event) {
+                  return _vm.$handleViewEvent($event)
+                }
+              }
             },
             [_vm._v("完成")]
           )

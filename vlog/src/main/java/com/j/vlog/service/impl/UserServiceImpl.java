@@ -73,7 +73,7 @@ public class UserServiceImpl implements UserService {
         }
 
         //相应字段值的修改，如果没有修改也需要传原值，以免被覆盖为空
-        savedUser.setPassword(DigestUtils.md5Hex(user.getPassword()));
+//        savedUser.setPassword(DigestUtils.md5Hex(user.getPassword()));
         savedUser.setNickname(user.getNickname());
         savedUser.setAvatar(user.getAvatar());
         savedUser.setGender(user.getGender());

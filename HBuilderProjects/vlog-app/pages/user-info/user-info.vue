@@ -41,7 +41,8 @@
 			<button 
 				class="bg-main text-white" 
 				style="border-radius: 50rpx; border: 0; " 
-				type="primary">完成</button>
+				type="primary"
+				@click="submit">完成</button>
 		</view>
 		
 		<mpvue-city-picker
@@ -145,7 +146,7 @@
 									address: this.user.address,
 									createTime: this.user.createTime
 								};
-								this.@H.post('/user/update', data).then(res => {
+								this.$H.post('/user/update', data).then(res => {
 									console.log(res);
 									this.$store.commit('editUserInfo', data);
 									uni.showToast({
