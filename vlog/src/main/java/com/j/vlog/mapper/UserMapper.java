@@ -46,7 +46,7 @@ public interface UserMapper {
      * @param user 用户对象
      * @throws SQLException 异常
      */
-    @Update("UPDATE t_user SET password=#{password}, nickname=#{nickname}, avatar=#{avatar}, gender=#{gender}, birthday=#{birthday}, address=#{address}"
-            + "WHERE phone=#{phone}")
+    @Update("UPDATE t_user SET password=#{password}, nickname=#{nickname}, avatar=#{avatar}, gender=#{gender}, birthday=#{birthday}, address=#{address} " +
+            "WHERE phone=#{phone}")
     void updateUser(User user) throws SQLException;
 }

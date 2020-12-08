@@ -48,6 +48,25 @@
 				if (!this.check()){
 					return;
 				}
+				let data = {
+					phone: this.user.phone,
+					password: this.newpassword,
+					nickname: this.user.nickname,
+					avatar: this.user.avatar,
+					gender: this.user.gender,
+					birthday: this.user.birthday,
+					address: this.user.address
+				};
+				this.$H.post('/user/update', data).then(res => {
+					this.$store.commit('editUserInfo', data);
+					uni.navigateBack({
+						delta:1
+					});
+					uni.showToast({
+						title: '修改密码成功',
+						icon: 'none'
+					});
+				});
 			}
 		}
 	};
