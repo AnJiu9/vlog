@@ -10,7 +10,7 @@ spring:
   datasource: # 数据源的相关配置
     type: com.zaxxer.hikari.HikariDataSource          # 数据源类型：HikariCP
     driver-class-name: com.mysql.cj.jdbc.Driver       # mysql驱动
-    url: jdbc:mysql://localhost:3306/vlog?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=GMT%2B8 # 东8区
+    url: jdbc:mysql://localhost:3306/vlog?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=GMT%2B8&allowMultiQueries=true # 东8区,允许批量操作
     username: root
     password: rootroot
     hikari:
@@ -28,3 +28,12 @@ spring:
 mybatis:
   configuration:
     map-underscore-to-camel-case: true  # mybatis开启驼峰式命名
+
+#pagehelper分页插件配置
+pagehelper:
+  auto-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+  row-bounds-with-count: true
+  page-size-zero: true

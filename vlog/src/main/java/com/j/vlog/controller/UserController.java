@@ -2,6 +2,7 @@ package com.j.vlog.controller;
 
 import com.j.vlog.common.ResponseResult;
 import com.j.vlog.common.ResultCode;
+import com.j.vlog.model.dto.CaptchaLoginDto;
 import com.j.vlog.model.dto.LoginDto;
 import com.j.vlog.model.dto.PhoneLoginDto;
 import com.j.vlog.model.dto.WxLoginDto;
@@ -111,6 +112,16 @@ public class UserController {
     public ResponseResult wxLogin(@RequestBody WxLoginDto wxLoginDto) {
         log.info("wxLoginDto:" + wxLoginDto);
         User user = userService.wxLogin(wxLoginDto);
+        if (user != null) {
+            return ResponseResult.success(user);
+        }
+        return ResponseResult.failure(ResultCode.USER_SIGN_IN_FAIL);
+    }
+
+    @PostMapping(value = "/captchaLogin")
+    public ResponseResult captchaLogin(@RequestBody CaptchaLoginDto captchaLoginDto) {
+        log.info("captchaLoginDto:" + captchaLoginDto);
+        User user = userService.captchaLogin(captchaLoginDto);
         if (user != null) {
             return ResponseResult.success(user);
         }

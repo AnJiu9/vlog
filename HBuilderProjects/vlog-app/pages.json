@@ -3,6 +3,7 @@
 		{
 			"path": "pages/index/index",
 			"style": {
+				"enablePullDownRefresh":true,
 				"app-plus": {
 					// 导航栏配置
 					"titleNView": {
