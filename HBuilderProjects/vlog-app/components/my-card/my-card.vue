@@ -92,7 +92,7 @@
 				font-size: 13px;
 				font-weight: bold;
 				display: inline-block;
-				background-color: rgb(138, 200, 64);
+				background-image: linear-gradient(to right, rgb(59, 147, 125) 0%, rgb(153, 242, 200) 100%);
 				border-radius: 10rpx;
 				margin: 0rpx 5rpx;
 			}
