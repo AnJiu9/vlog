@@ -41,6 +41,11 @@ public class ArticleSerciveImpl implements ArticleService {
     }
 
     @Override
+    public List<Article> getRecommendArticles(int userId) {
+        return articleMapper.getRecommendArticles(userId);
+    }
+
+    @Override
     public PageInfo<Article> selectByPage(int pageNum, int pageSize, int userId) {
         //将参数传给这个方法就可以实现物理分页
         PageHelper.startPage(pageNum, pageSize);
@@ -48,5 +53,10 @@ public class ArticleSerciveImpl implements ArticleService {
         Page<Article> articlePage = articleMapper.selectAll(userId);
         //将这些数据作为入参构建出PageInfo（包含了总页数，当前页码、每页数量、当前页数据List等一堆属性和方法）
         return new PageInfo<>(articlePage);
+    }
+
+    @Override
+    public Article getDetail(String id) {
+        return articleMapper.getDetail(id);
     }
 }

@@ -2,6 +2,7 @@ package com.j.vlog.service;
 
 import com.github.pagehelper.PageInfo;
 import com.j.vlog.model.entity.Article;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -22,6 +23,14 @@ public interface ArticleService {
     void insertArticles(List<Article> articles);
 
     /**
+     * 查询推荐的6篇文章
+     *
+     * @param userId 用户id
+     * @return List<Article>
+     */
+    List<Article> getRecommendArticles(@Param(value = "userId") int userId);
+
+    /**
      * 根据用户id查询数据并分页
      *
      * @param pageNum 页码
@@ -30,4 +39,12 @@ public interface ArticleService {
      * @return 返回结果
      */
     PageInfo<Article> selectByPage(int pageNum, int pageSize, int userId);
+
+    /**
+     * 根据文章id查找文章详情
+     *
+     * @param id 文章id
+     * @return Article详情
+     */
+    Article getDetail(@Param(value = "id") String id);
 }

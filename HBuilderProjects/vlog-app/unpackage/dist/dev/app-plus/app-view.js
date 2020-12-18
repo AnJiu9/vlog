@@ -383,7 +383,7 @@ var render = function() {
                     staticClass: _vm._$g("8-" + $30, "sc"),
                     attrs: { _i: "8-" + $30 }
                   },
-                  [_vm._v("#" + _vm._$g("8-" + $30, "t0-0"))]
+                  [_vm._v(_vm._$g("8-" + $30, "t0-0"))]
                 )
               }),
               _c(

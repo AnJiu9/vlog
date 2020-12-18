@@ -11,7 +11,7 @@
 					{{article.summary.length>30 ? article.summary.substring(0,30):article.summary}}
 				</view>
 				<view class="tag" v-for="(tag, index) in article.tagList" :key="index">
-					#{{tag.tagName}}
+					{{tag.tagName}}
 				</view>
 				<view class="time">
 					{{article.publishDate}}
