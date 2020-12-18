@@ -11,7 +11,7 @@
 					{{article.summary.length>30 ? article.summary.substring(0,30):article.summary}}
 				</view>
 				<view class="tag" v-for="(tag, index) in article.tagList" :key="index">
-					{{tag.tagName}}
+					#{{tag.tagName}}
 				</view>
 				<view class="time">
 					{{article.publishDate}}
@@ -70,7 +70,7 @@
 			left: 10rpx;
 		}
 		.category{
-			color: #754a8f;
+			color: rgb(64, 150, 128);
 			padding: 2px 2px;
 			position: absolute;
 			bottom: 0;
@@ -84,18 +84,17 @@
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
-		.md{
+		.mid{
 			.title{
 				font-weight: bold;
 			}
 			.tag{
-				font-size: 20px;
+				font-size: 13px;
 				font-weight: bold;
-				position: relative;
-			}
-			.time{
-				position: absolute;
-				left: 20rpx;
+				display: inline-block;
+				background-color: rgb(138, 200, 64);
+				border-radius: 10rpx;
+				margin: 0rpx 5rpx;
 			}
 		}
 		.right{
