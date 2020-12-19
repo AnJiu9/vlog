@@ -1,5 +1,5 @@
 <template>
-	<view class="my-card" @click="onClick">
+	<view class="my-card" @click="open">
 		<view class="thumb">
 			<image :src="article.cover" class="img" mode="aspectFill" />
 				<view class="category">{{article.category}}</view>
@@ -26,11 +26,6 @@
 	export default {
 		name:"MyCard",
 		props:['article'],//通过props传值，伏组件中将article传过来
-		data() {
-			return {
-				
-			};
-		},
 		computed:{
 			//计算属性，文章摘要的长度超出就用。。。代替
 			summary(){
@@ -42,9 +37,9 @@
 			}
 		},
 		methods:{
-			onClick(){
-				//在子组件my-card.vue中将点击事件传回夫组件index.vue
-				this.$emit('click')
+			open(){
+				//在子组件my-card.vue中将点击事件传回父组件index.vue
+				this.$emit('open')
 			}
 		}
 	}
