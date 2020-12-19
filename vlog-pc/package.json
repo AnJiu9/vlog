@@ -13,7 +13,7 @@
     "core-js": "^3.6.5",
     "date-fns": "2.16.1",
     "v-distpicker": "^1.2.9",
-    "vue": "^2.6.11",
+    "vue": "^2.6.12",
     "vue-axios": "^3.2.0",
     "vue-layer": "^1.2.1",
     "vue-router": "^3.2.0",

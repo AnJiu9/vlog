@@ -29,7 +29,7 @@
                 <h4 class="light-grey--text my-6 pt-6">{{article.category}}</h4>
                 <h1 class="mt-6 mask pa-6">{{article.title}}</h1>
                 <div class="text-md-h6 light-grey--text mt-6 pa-2 mask display">{{article.summary}}</div>
-                <v-btn rounded dark elevation="12" class="mt-6 px-12 py-6 green-btn">
+                <v-btn rounded dark elevation="12" class="mt-6 px-12 py-6 green-btn" @click="gotoDetail(article.id)">
                   <h3>阅读更多</h3>
                 </v-btn>
               </v-img>
@@ -39,7 +39,7 @@
       </v-row>
 
       <v-row style="width:80%; margin:0 auto;margin-top:10px;">
-        <v-col cols="12" md="4" v-for="(article, index) in articles" :key="index">
+        <v-col cols="12" md="4" v-for="(article, index) in articles" :key="index" @click="gotoDetail(article.id)">
           <v-hover v-slot="{hover}">
             <v-card class="rounded-lg" height="550" link:elevation="hover ? 12 : 2" :class="{'on-hover':hover}">
               <v-img class="white--text align-end" height="55%" :src="article.cover"> 
@@ -140,12 +140,24 @@ export default {
     })
   },
   created() {
+    this.getIndexList()
     this.getData()
   },
   methods:{
-    //根据是否有发布日期过滤出推荐文章
-    recommended(element){
-      return element.publishDate === null
+    getIndexList(){
+      this.axios({
+        method: 'GET',
+        url: '/article/recommend',
+        headers: {
+          userId: this.user.id
+        }
+      }).then((res) => {
+        console.log(res.data.data)
+        this.indexList = res.data.data
+        this.indexList.forEach((element) => {
+          this.slides.push(element.cover)
+        })
+      })
     },
     getData(){
       this.axios({
@@ -201,6 +213,11 @@ export default {
           }
         )
       }
+    },
+    gotoDetail(id){
+      this.$router.push({
+        path: '/article/' + id
+      })
     }
   }
 }
