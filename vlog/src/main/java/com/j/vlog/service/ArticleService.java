@@ -47,4 +47,12 @@ public interface ArticleService {
      * @return Article详情
      */
     Article getDetail(@Param(value = "id") String id);
+
+    /**
+     * 发布文章
+     *
+     * @param article 文章
+     * @return article
+     */
+    Article postArticle(Article article);
 }

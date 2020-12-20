@@ -2,7 +2,12 @@
 	<view class="my-card" @click="open">
 		<view class="thumb">
 			<image :src="article.cover" class="img" mode="aspectFill" />
-				<view class="category">{{article.category}}</view>
+				<view class="category">
+					{{article.category}}
+				</view>
+				<view class="time">
+					{{article.publishDate}}
+				</view>
 		</view>
 		<view class="detail">
 			<view class="mid">
@@ -12,9 +17,6 @@
 				</view>
 				<view class="tag" v-for="(tag, index) in article.tagList" :key="index">
 					{{tag.tagName}}
-				</view>
-				<view class="time">
-					{{article.publishDate}}
 				</view>
 			</view>
 			<view class="right"></view>
@@ -70,6 +72,13 @@
 			position: absolute;
 			bottom: 0;
 			left: 10rpx;
+		}
+		.time{
+			color: rgb(64, 150, 128);
+			position: absolute;
+			bottom: 0;
+			left: 10rpx;
+			top: 200rpx;
 		}
 	}
 	.detail{

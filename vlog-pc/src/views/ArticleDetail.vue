@@ -115,7 +115,7 @@ export default {
         }).then((res) => {
             this.article = res.data.data
             //利用正则表达式解析出文章内容中的所有h2标签内容
-            let reg = /<(h|H)[2].*?>.*?<\/(h|H)[1-6].*?>/g
+            let reg = /<(h|H)[1-6].*?>.*?<\/(h|H)[1-6].*?>/g
             let result = JSON.stringify(this.article).match(reg)
             console.log(result)
             // console.log(typeof result)

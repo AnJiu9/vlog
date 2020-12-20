@@ -20,7 +20,7 @@ public interface ArticleTagMapper {
      *
      * 批量插入
      *
-     * @param articleTagList
+     * @param articleTagList 文章标签集合
      */
     @Insert({
             "<script>",
@@ -36,8 +36,8 @@ public interface ArticleTagMapper {
      *
      * 查询所有文章的所有标签
      *
-     * @param articleId
-     * @return
+     * @param articleId 文章id
+     * @return List<ArticleTag>
      */
     @Select("SELECT * FROM t_article_tag WHERE article_id=#{articleId}")
     List<ArticleTag> selectByArticleId(@Param("articleId") String articleId);

@@ -79,9 +79,9 @@ export default {
         path: '/my'
       },
       {
-        icon: 'mdi-alert-circle',
-        text: '暂无',
-        path: '/404'
+        icon: 'mdi-pen',
+        text: '写文章',
+        path: '/write'
       }
     ]
   }),

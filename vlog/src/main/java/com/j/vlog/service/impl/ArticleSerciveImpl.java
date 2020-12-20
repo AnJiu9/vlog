@@ -8,10 +8,12 @@ import com.j.vlog.mapper.ArticleTagMapper;
 import com.j.vlog.model.entity.Article;
 import com.j.vlog.model.entity.ArticleTag;
 import com.j.vlog.service.ArticleService;
+import com.j.vlog.utils.DataUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -58,5 +60,22 @@ public class ArticleSerciveImpl implements ArticleService {
     @Override
     public Article getDetail(String id) {
         return articleMapper.getDetail(id);
+    }
+
+    @Override
+    public Article postArticle(Article article) {
+        article.setCover("https://picsum.photos/1920/1080?random&rand=" + Math.random());
+        article.setPublishDate(LocalDate.now());
+        article.setTotalWords(DataUtil.getTotalWords());
+        article.setDuration(DataUtil.getDuration());
+        article.setPageView(DataUtil.getPageView());
+        System.out.println(article);
+        //新增文章
+        articleMapper.add(article);
+        //获得文章的标签列表
+        List<ArticleTag> tagList = article.getTagList();
+        //批量插入标签
+        articleTagMapper.insertArticleTags(tagList);
+        return article;
     }
 }

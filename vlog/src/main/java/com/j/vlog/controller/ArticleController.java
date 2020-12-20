@@ -30,7 +30,7 @@ public class ArticleController {
 
     @PostMapping("page")
     public PageInfo<Article> getArticlesByPage(@RequestParam(name = "pageNum", defaultValue = "1", required = false) int pageNum,
-                                               @RequestParam(name = "pageSize", defaultValue = "6", required = false) int pageSize) {
+                                               @RequestParam(name = "pageSize", defaultValue = "9", required = false) int pageSize) {
         PageInfo<Article> articlePageInfo = articleService.selectByPage(pageNum,pageSize,getUserId());
         if (articlePageInfo == null) {
             throw new NullPointerException();
@@ -62,5 +62,10 @@ public class ArticleController {
         assert sra != null;
         HttpServletRequest request = sra.getRequest();
        return Integer.parseInt(request.getHeader("userId"));
+    }
+
+    @PostMapping("post")
+    public Article postArticle(@RequestBody Article article) {
+        return articleService.postArticle(article);
     }
 }
