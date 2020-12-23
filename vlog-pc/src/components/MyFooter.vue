@@ -24,7 +24,7 @@ export default {
 .footer-bg{
     height: 140px;
     background-color: #D4E157;
-    background-image: linear-gradient(to right, #bf30ac 0%, #0f9d58 100%);
+    background-image: linear-gradient(to right, #00b09b 0%, #96c93d 100%);
     opacity: 0.5;
     text-align: center;
     color: #fff;

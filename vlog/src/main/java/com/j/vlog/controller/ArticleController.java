@@ -3,6 +3,7 @@ package com.j.vlog.controller;
 import com.github.pagehelper.PageInfo;
 import com.j.vlog.common.ResponseResult;
 import com.j.vlog.model.entity.Article;
+import com.j.vlog.model.vo.ArticleVo;
 import com.j.vlog.service.ArticleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -29,9 +30,9 @@ public class ArticleController {
     private ArticleService articleService;
 
     @PostMapping("page")
-    public PageInfo<Article> getArticlesByPage(@RequestParam(name = "pageNum", defaultValue = "1", required = false) int pageNum,
+    public PageInfo<ArticleVo> getArticlesByPage(@RequestParam(name = "pageNum", defaultValue = "1", required = false) int pageNum,
                                                @RequestParam(name = "pageSize", defaultValue = "9", required = false) int pageSize) {
-        PageInfo<Article> articlePageInfo = articleService.selectByPage(pageNum,pageSize,getUserId());
+        PageInfo<ArticleVo> articlePageInfo = articleService.selectByPage(pageNum,pageSize);
         if (articlePageInfo == null) {
             throw new NullPointerException();
         }
@@ -39,8 +40,8 @@ public class ArticleController {
     }
 
     @GetMapping("recommend")
-    public List<Article> getRecommend() {
-        List<Article> recommendArticles = articleService.getRecommendArticles(getUserId());
+    public List<ArticleVo> getRecommend() {
+        List<ArticleVo> recommendArticles = articleService.getRecommendArticles();
         if (recommendArticles == null) {
             throw new NullPointerException();
         }
@@ -48,8 +49,8 @@ public class ArticleController {
     }
 
     @GetMapping("{id}")
-    public Article getArticleDetail(@PathVariable String id) {
-        Article detail = articleService.getDetail(id);
+    public ArticleVo getArticleDetail(@PathVariable String id) {
+        ArticleVo detail = articleService.getDetail(id);
         if (detail == null) {
             throw new NullPointerException();
         }

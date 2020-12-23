@@ -1,9 +1,9 @@
 <template>
   <v-row align="start">
-    <v-col cols="20" md="3">
+    <v-col cols="12" md="3" class="mr-6">
       <side-bar></side-bar>
     </v-col>
-    <v-col cols="20" md="17" class="ml-12">
+    <v-col cols="12" md="8" class="ml-12">
       <router-view />
     </v-col>
   </v-row>
@@ -17,9 +17,20 @@ export default {
     SideBar
   },
   data() {
-    return {}
+    return {
+      id:0
+    }
   },
-  created() {},
-  methods: {}
+  created() {
+    this.id = this.$route.params.id
+    alert('你要访问的用户id为：' + this.id)
+    this.axios({
+      method:'GET',
+      url: '/user/' + this.id
+    }).then((res) => {
+      console.log(res.data.data.id)
+      this.$store.commit('visit', res.data.data)
+    })
+  }
 }
 </script>

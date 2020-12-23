@@ -7,8 +7,7 @@ export default new Vuex.Store({
   state: {
     loginStatus: false,
     avatar: '',
-    gender: '',
-    user: {
+    loginUser: {
       id: 1,
       phone: '18805150273',
       password: '4297f44b13955235245b2497399d7a93',
@@ -20,16 +19,22 @@ export default new Vuex.Store({
       banner: 'https://share--app.oss-cn-hangzhou.aliyuncs.com/bg/20201214164910.png',
       signature: '不期而遇 ｜ 随遇而安',
       createTime: '2020-12-05 12:59:30'
-    }
+    },
+    user:{}
   },
   getters: {},
   mutations: {
     // 登录成功后，用户数据存入本地存储
     login(state, user) {
       state.loginStatus = true
-      state.user = user
+      state.loginUser = user
       state.avatar = user.avatar
-      localStorage.setItem('user', JSON.stringify(user))
+      localStorage.setItem('loginUser', JSON.stringify(user))
+      // console.log(user)
+    },
+    //访问用户页面
+    visit(state, user){
+      state.user = user
     },
     // 退出登录
     logout(state) {

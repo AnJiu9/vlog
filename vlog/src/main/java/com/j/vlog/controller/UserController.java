@@ -127,4 +127,13 @@ public class UserController {
         }
         return ResponseResult.failure(ResultCode.USER_SIGN_IN_FAIL);
     }
+
+    @GetMapping(value = "{id}")
+    public User getUser(@PathVariable int id) {
+        User user = userService.getUser(id);
+        if (user == null) {
+            throw new NullPointerException();
+        }
+        return user;
+    }
 }

@@ -3,6 +3,7 @@ package com.j.vlog.service;
 import com.github.pagehelper.PageInfo;
 import com.j.vlog.VlogApplication;
 import com.j.vlog.model.entity.Article;
+import com.j.vlog.model.vo.ArticleVo;
 import com.j.vlog.task.ArticleTask;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -42,7 +43,7 @@ class ArticleServiceTest {
 
     @Test
     void selectByPage() {
-        PageInfo<Article> articlePageInfo = articleService.selectByPage(1,9,1);
+        PageInfo<ArticleVo> articlePageInfo = articleService.selectByPage(1,9);
         System.out.println(articlePageInfo.getList().size());
     }
 
@@ -50,13 +51,13 @@ class ArticleServiceTest {
 
     @Test
     void getRecommendArticles() {
-        List<Article> recommendArticles = articleService.getRecommendArticles(1);
+        List<ArticleVo> recommendArticles = articleService.getRecommendArticles();
         recommendArticles.forEach(System.out::println);
     }
 
     @Test
     void getDetail() {
-        Article detail = articleService.getDetail("00c4b67e137640c7b6fcf0df85212426");
+        ArticleVo detail = articleService.getDetail("00c4b67e137640c7b6fcf0df85212426");
         System.out.println(detail);
     }
 }

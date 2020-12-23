@@ -3,6 +3,7 @@ package com.j.vlog.task;
 import cn.hutool.core.util.IdUtil;
 import com.j.vlog.model.entity.Article;
 import com.j.vlog.model.entity.ArticleTag;
+import com.j.vlog.utils.DataUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -106,17 +107,17 @@ public class ArticleTask implements Callable<List<Article>> {
 
             Article article = Article.builder()
                     .id(id)
-                    .userId(1)
+                    .userId(DataUtil.getUserId())
                     .title(title)
                     .category(category)
                     .cover("https://picsum.photos/1920/1080?random&rand=" + Math.random())
                     .summary(summary)
                     .content(content)
                     .url(url)
-                    .publishDate(publishDate)
-                    .totalWords(getTotalWords())
-                    .duration(getDuration())
-                    .pageView(getPageView())
+                    .createTime(DataUtil.getRandomLocalDateTime(-1000,1))
+                    .totalWords(DataUtil.getTotalWords())
+                    .duration(DataUtil.getDuration())
+                    .pageView(DataUtil.getPageView())
                     .tagList(articleTags)
                     .build();
             articleList.add(article);

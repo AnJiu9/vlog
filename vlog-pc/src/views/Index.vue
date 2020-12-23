@@ -24,11 +24,18 @@
               link
               :elevation="hover ? 12 : 2" 
               height="500"
-              :class="{'on-hover':hover}">
+              :class="{'on-hover':hover}"
+            >
               <v-img class="white--text" :src="article.cover" height="100%" style="text-align:center;">
-                <h4 class="light-grey--text my-6 pt-6">{{article.category}}</h4>
+                <!-- <h4 class="light-grey--text my-6 pt-6">{{article.category}}</h4> -->
                 <h1 class="mt-6 mask pa-6">{{article.title}}</h1>
-                <div class="text-md-h6 light-grey--text mt-6 pa-2 mask display">{{article.summary}}</div>
+                <p class="text-md-h6 light-grey--text pa-2 mask display-3 text-left">{{article.summary}}</p>
+                <v-row class="px-12 mask" align="center" @click="gotoProfile(article.userId)">
+                  <v-avatar>
+                    <img :src="article.avatar" />
+                  </v-avatar>
+                  <h4 class="light-grey-text ml-6">{{article.nickname}}</h4>
+                </v-row>
                 <v-btn rounded dark elevation="12" class="mt-6 px-12 py-6 green-btn" @click="gotoDetail(article.id)">
                   <h3>阅读更多</h3>
                 </v-btn>
@@ -39,10 +46,10 @@
       </v-row>
 
       <v-row style="width:80%; margin:0 auto;margin-top:10px;">
-        <v-col cols="12" md="4" v-for="(article, index) in articles" :key="index" @click="gotoDetail(article.id)">
+        <v-col cols="12" md="4" v-for="(article, index) in articles" :key="index">
           <v-hover v-slot="{hover}">
-            <v-card class="rounded-lg" height="550" link:elevation="hover ? 12 : 2" :class="{'on-hover':hover}">
-              <v-img class="white--text align-end" height="55%" :src="article.cover"> 
+            <v-card class="rounded-lg" height="650" link:elevation="hover ? 12 : 2" :class="{'on-hover':hover}">
+              <v-img class="white--text align-end" height="50%" :src="article.cover" @click="gotoDetail(article.id)"> 
                 <h2 class="px-3 mb-6 mask">{{article.title}}</h2>
               </v-img>
               <v-card-text class="text--primary">
@@ -50,7 +57,7 @@
                   {{article.summary}}
                 </div>
                 <v-row justify="space-between" class="px-3 mt-5 text-md-h6 font-weight-regular">
-                  <span>{{article.publishDate}}</span>
+                  <span>{{article.createTime}}</span>
                   <div>
                     <v-icon color="#38485C">
                       mdi-bookmark
@@ -59,6 +66,13 @@
                   </div>
                 </v-row>
               </v-card-text>
+              <v-divider></v-divider>
+              <v-row class="ml-4 mt-2" align="center" @click="gotoProfile(article.userId)">
+                <span class="mr-3">{{article.nickname}}</span>
+                <v-avatar>
+                  <img :src="article.avatar" />
+                </v-avatar>
+              </v-row>
               <v-card-actions class="px-3 mt-2">
                 <v-btn class="bg-color mr-1" text v-for="(tag, index) in article.tagList" :key="index">
                   {{tag.tagName}}
@@ -136,7 +150,7 @@ export default {
   computed: {
     ...mapState({
       loginStatus: (state) => state.loginStatus,
-      user: (state) => state.user
+      loginUser: (state) => state.loginUser
     })
   },
   created() {
@@ -147,10 +161,7 @@ export default {
     getIndexList(){
       this.axios({
         method: 'GET',
-        url: '/article/recommend',
-        headers: {
-          userId: this.user.id
-        }
+        url: '/article/recommend'
       }).then((res) => {
         console.log(res.data.data)
         this.indexList = res.data.data
@@ -165,20 +176,13 @@ export default {
         url: '/article/page',
         params:{
           pageNum: this.pageNum
-        },
-        headers:{
-          userId: this.user.id
         }
       }).then((res) => {
-        console.log(res.data.data)
+        // console.log(res.data.data)
         this.articles.splice(0,9)
         this.articles = res.data.data.list
         this.pages = res.data.data.pages
-        this.indexList = this.articles.slice(0,6)
-        this.indexList.forEach((element) => {
-          this.slides.push(element.cover)
         })
-      })
     },
     next(){
       if(this.pageNum < this.pages){
@@ -215,8 +219,15 @@ export default {
       }
     },
     gotoDetail(id){
+      // console.log(id)
       this.$router.push({
         path: '/article/' + id
+      })
+    },
+    gotoProfile(id){
+      // console.log(id)
+      this.$router.push({
+        path: '/my/' + id
       })
     }
   }

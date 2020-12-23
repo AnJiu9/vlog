@@ -1,17 +1,18 @@
 <template>
     <v-card min-width="320">
-        <v-img :src="imgSrc" height="300px" class="px-3 py-3" dark ref="img">
+        <v-img :src="user.avatar" height="300px" class="px-3 py-3" dark ref="img">
             <input type="file" @change="change" ref="input" style="display:none">
-            <v-btn dark icon @click="handleClick">
+            <v-btn dark icon @click="handleClick" v-if="user.id === loginUser.id">
                 <v-icon middle>mdi-camera-plus-outline</v-icon>
             </v-btn>
         </v-img>
             <v-row class="mt-4">
-                <v-btn class="mx-2" fab dark color="green darken-1" @click="uploadAvatar">
+                <v-btn class="mx-6" fab dark color="green darken-1" @click="uploadAvatar" v-if="user.id === loginUser.id">
                     <v-icon dark>
                         mdi-arrow-up-thick
                     </v-icon>
                 </v-btn>
+                <div class="font-weight-bold text-md-h5 mx-5">{{user.nickname}}</div>
             </v-row>
 
         <v-list two-line>
@@ -130,6 +131,7 @@ export default {
     computed: {
         ...mapState({
             loginStatus: (state) => state.loginStatus,
+            loginUser: (state) => state.loginUser,
             user: (state) => state.user
         }),
         //头像计算属性

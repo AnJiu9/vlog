@@ -100,7 +100,7 @@ export default {
         },
         ...mapState({
             loginStatus: (state) => state.loginStatus,
-            user: (state) => state.user
+            loginUser: (state) => state.loginUser
         })
     },
     methods:{

@@ -6,15 +6,20 @@
         color="#fcb69f"
         clipped-left
         dark
-        src="https://share--app.oss-cn-hangzhou.aliyuncs.com/bg/20201214163901.jpeg"
-        height="600"
+        :src="user.banner"
+        height="500"
       >
         <template v-slot:img="{props}">
           <v-img v-bind="props" gradient="to top right, rgba(67, 198, 172,0.3), rgba(248, 255, 174,0.5)"></v-img>
         </template>
+        <v-row justify="center">
+          <v-card-title>
+            <h1>{{user.signature}}</h1>
+          </v-card-title>
+        </v-row>
       </v-app-bar>
     </v-card>
-    <v-main>
+    <v-main class="grey lighten-3">
       <v-container class="main-content">
         <router-view/>
       </v-container>
@@ -36,6 +41,7 @@ export default {
   computed: {
     ...mapState({
         loginStatus: (state) => state.loginStatus,
+        loginUser: (state) => state.loginUser,
         user: (state) => state.user
     })
   }

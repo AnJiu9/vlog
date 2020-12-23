@@ -56,17 +56,17 @@ export default {
 		// 点击图片时显示图片大小控件
 		showImgSize: {
 			type: Boolean,
-			default: false
+			default: true
 		},
 		// 点击图片时显示工具栏控件
 		showImgToolbar: {
 			type: Boolean,
-			default: false
+			default: true
 		},
 		// 点击图片时显示修改尺寸控件
 		showImgResize: {
 			type: Boolean,
-			default: false
+			default: true
 		},
 		// 占位符
 		placeholder: {

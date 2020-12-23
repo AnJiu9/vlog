@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-form ref="form" v-model="valid" lazy-validation>
+    <v-form ref="form" v-model="valid" lazy-validation v-if="user.id === loginUser.id">
         <v-text-field v-model="nickname" :counter="10" :rules="nameRules" label="昵称"></v-text-field>
         <v-select
             v-model = "genderSelect"
@@ -31,6 +31,9 @@
             重置
         </v-btn>
     </v-form>
+    <div v-else>
+        <h2>欢迎{{loginUser.nickname}}来到我的博客ヽ(✿ﾟ▽ﾟ)ノ</h2>
+    </div>
   </div>
 </template>
 
@@ -58,6 +61,7 @@ export default {
     computed: {
         ...mapState({
             loginStatus: (state) => state.loginStatus,
+            loginUser: (state) => state.loginUser,
             user: (state) => state.user
         })
     },

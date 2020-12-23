@@ -54,10 +54,10 @@ const routes = [
         component: () => import('../views/Write.vue')
       },
       {
-        path: 'my',
+        path: '/my/:id',
         name: 'My',
         component: () => import('../views/My.vue'),
-        redirect: '/my/userinfo',
+        redirect: '/my/:id/userinfo',
         children: [
           {
             path: 'userinfo',

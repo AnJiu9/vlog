@@ -31,4 +31,6 @@ public class User {
     private LocalDate birthday;
     private String address;
     private LocalDateTime createTime;
+    private String banner;
+    private String signature;
 }

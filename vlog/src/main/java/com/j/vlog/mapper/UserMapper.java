@@ -66,5 +66,8 @@ public interface UserMapper {
             "</when>",
             "</script>"})
     User fineUserByOpenId(@Param("wxOpenId") String wxOpenId) throws SQLException;
+
+    @Select("SELECT id, phone, nickname, avatar, gender, address, birthday, banner, signature FROM t_user WHERE id=#{id}")
+    User getUser(@Param("id") int id);
 }
 

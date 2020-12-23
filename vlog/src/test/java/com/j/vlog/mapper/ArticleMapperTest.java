@@ -3,6 +3,7 @@ package com.j.vlog.mapper;
 import com.github.pagehelper.Page;
 import com.j.vlog.VlogApplication;
 import com.j.vlog.model.entity.Article;
+import com.j.vlog.model.vo.ArticleVo;
 import com.j.vlog.task.ArticleTask;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -37,19 +38,19 @@ class ArticleMapperTest {
 
     @Test
     void selectAll() {
-        Page<Article> articlePage = articleMapper.selectAll(1);
+        Page<ArticleVo> articlePage = articleMapper.selectAll();
         System.out.println(articlePage.toPageInfo().getList().size());
     }
 
     @Test
     void getRecommendArticles(){
-        List<Article> articles = articleMapper.getRecommendArticles(1);
+        List<ArticleVo> articles = articleMapper.getRecommendArticles();
         System.out.println(articles);
     }
 
     @Test
     void getDetail() {
-        Article article = articleMapper.getDetail("00f4ab8f109f45ea804581beca76af21");
+        ArticleVo article = articleMapper.getDetail("00f4ab8f109f45ea804581beca76af21");
         System.out.println(article);
     }
 }
